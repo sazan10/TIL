@@ -75,9 +75,9 @@ Learned python
        print(k+","+v)
  ```
  6.  Modules
- ``` bash
+ 
       while importing modules python2 showed error so needed to switch to python3
- ```
+ 
  7.  Downloading image fromweb using urllib.request module
  8.  Reading and writing files
  ``` bash
