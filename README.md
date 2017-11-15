@@ -75,8 +75,7 @@ Learned python
        print(k+","+v)
  ```
  6.  Modules
- 
-      while importing modules python2 showed error so needed to switch to python3
+      While importing modules python2 showed error so needed to switch to python3
  
  7.  Downloading image fromweb using urllib.request module
  8.  Reading and writing files
@@ -94,9 +93,8 @@ Learned python
 
  ```
  9.  Downloading Files from the Web
- ``` bash
       Downloaded csv file from the web and saved it in local disk
- ```
+ 
 10.  Creating a web crawler
 11.  Exception Handling
 ``` bash
