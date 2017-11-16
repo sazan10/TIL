@@ -55,10 +55,10 @@ Learned python
 ### Summary of the things I learned
  1.  Using conditions, loops(for x in range(a,b)), functions(def), comments(#, ''')
  2.  Default values for arguments
- ``` bash
- 3.  Using Multiple arguments
+ ```bash
       def function_name(var="value"):
  ```
+ 3.  Using Multiple arguments
  ``` bash
       def function_name(*args):
  ```
@@ -121,3 +121,56 @@ Learned python
 
 
 ## Nov 16, 2017
+Python Continuation
+
+### Summary of the things learned today
+1.  Inheritance using Python
+ ```bash
+      class A():
+	content
+      class B(A):
+ ```
+2.  Multithreading
+ ```bash
+     import threading
+     class A(threading.Thread):
+       def run(self):
+	 content
+     x=A(name="s") //threading.currentThread().getName() in run
+     x.start()
+ ```
+3.  Developed a Word Frequency Counter
+4.  Tuples, Zip, Lambda
+ ```bash
+      Tuple
+      first,*mid,last = [1, 2, 3, 4, 5, 6, 7, 8]
+      
+      Zip
+      zip(first_list,second_list)   
+      
+      Lambda
+      a= lambda x: x*7 // a*(5)
+ ```
+5. Image transformation, cropping, combining, channelling filtering using Pillow
+6. Storing value as byte data using struct
+7. Map
+ ```bash
+      in=[1,2,3,4,5]
+      def doub(a):
+        return a*2
+      li=list(map(doub,in))
+ ```
+8. Dictionary Multiple Key Sort
+ ```bash
+      for x in sorted(object_name, key=itemgetter('object_property1','object_property2'):
+ ```
+9. Sorting Custom objects
+ '''bash
+      for user in sorted(users, key=attrgetter('sort_by_object_property')):
+ '''
+
+-----
+-----
+
+
+## Nov 17, 2017
