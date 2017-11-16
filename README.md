@@ -171,6 +171,5 @@ Python Continuation
 
 -----
 -----
-
-
+ 
 ## Nov 17, 2017
