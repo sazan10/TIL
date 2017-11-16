@@ -14,12 +14,11 @@ Today I learned different things about Linux.
  2. SHELL
  3. File System Hierarchy standard in Linux
  4. Different commands in Linux like mkdir, tar, chmod, diff, top, uptime, pwd, ls, whoami...
+ 
 
 ```bash
 The ubuntu puzzle was really fun and engaging yet informative.
 ```
-hellodfkjdkljfk jklj 
-djfklejf
 
 -----
 -----
