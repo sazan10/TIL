@@ -207,9 +207,8 @@ def download_file(url):
         sum_prod+=prod
     m= (sum_y*sumx_square - sum_x*sum_prod)/((len(data) - 1)*sumx_square - sum_x*sum_x)
     c= ((len(data) - 1) * sum_prod - sum_x*sum_y)/((len(data) - 1)*sumx_square - sum_x*sum_x)
-    print("\n")
     print (m)
     print (c)
+    file.close()
 download_file("https://s3.amazonaws.com/back-end-training/house-prices.csv")
-
 ```
