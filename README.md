@@ -184,4 +184,24 @@ https://github.com/sazan10/Linear_Regression-Python-Assignment-.git
 -----
  
 ## Nov 20, 2017
-
+Started Learning Core Java
+1.  Array 
+ ```
+ 	int [] value = new int[3];
+ ```
+2.  Multidimensional Array
+ ```
+ 	int [] [] g = { {1,2,3,},{4,5,6} };
+ ```
+3. Static and final
+   The static variables and methods are for the class as a whole and is shared whereas final is for constants.
+   
+4. String builder 
+ ```
+ 	StringBuilder s = new StringBuilder("");
+	s.append("");
+	s.toString();
+ ```
+5. Interface
+   Contains only definition and no implementations, the inheriting classes implements the methods.
+   A class can only extend one parent but implement multiple interfaces.
