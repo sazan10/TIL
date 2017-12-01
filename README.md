@@ -255,10 +255,15 @@ Continuation of Core Java and initiation of OOP
     Same operation can be invoked on objects of different classes and they wil all perform in their own way.
     
  6. SOLID
+ 
     S- Single Responsibility => There should never be more than one reason for a class to change.
+    
     O- Open/Closed => A module should be open for extension but closed for modification
+    
     L- Liskov Substitution => Subclasses must be usable as their bas classes
+    
     I- Interface segregation => Many client specific interfaces are better than one general purpose interface.
+    
     D- Dependency Inversion => Depend upon abstraction, do not depend uponconcretions.
     
 -----
