@@ -205,3 +205,73 @@ Started Learning Core Java
 5. Interface
    Contains only definition and no implementations, the inheriting classes implements the methods.
    A class can only extend one parent but implement multiple interfaces.
+   
+
+-----
+-----
+ 
+## Nov 21, 2017
+Continuation of Core Java
+1. Access Specifiers
+ ```
+ 	public => can be accessed from anywhere
+	protected => same package/child
+	private => only in same class
+	no specifier => same package/ no child
+ ```
+ 2. Polymorphism
+    A child class can be used anywhere in place of a parent class, such that the parent can access the overridden methonds of c       	  child. Child can be used in place of parent but reverse is not true.
+    
+ 3. Generic class
+    A generic type or method allows to operate on objects of various types while providing compile-time type safety. 
+ 
+ 4. Abstract
+    For base classes which are inherited and not used to make objects/instantiate. For every abstract methods, implementation        	should be contained in children.
+    Abstract is extended whereas interface is implemented. Abstract may contain codes but interface has only definitions, no 	                     	 implementation.
+    
+ 5. Serialization
+    Serialization enables us to represent an object as a sequence of bytes  and to write objects to files. Th file can be read 	
+    and deserialized to represent the object.
+ 
+ 6. Started the Java Core, JSON parsing assignment. Was able to parse the JSON file and obtain the data as objects.
+ 
+-----
+-----
+ 
+## Nov 22, 2017
+Continuation of Core Java and initiation of OOP
+ 1. Completed the JSON parsing assignment.
+ 
+ 2. Association(OOP)
+    Describesany kind of working relationwith no ownership, no effect on life cycle.
+ 
+ 3. Aggregation
+    Relationship in whichone object belongs to another object, but still independent. Independent life cycle but there exists       	ownership.
+  
+ 4. Composition
+    If parent destroyed children cease to exist.
+ 
+ 5. Polymorphism
+    Same operation can be invoked on objects of different classes and they wil all perform in their own way.
+    
+ 6. SOLID
+    S- Single Responsibility => There should never be more than one reason for a class to change.
+    O- Open/Closed => A module should be open for extension but closed for modification
+    L- Liskov Substitution => Subclasses must be usable as their bas classes
+    I- Interface segregation => Many client specific interfaces are better than one general purpose interface.
+    D- Dependency Inversion => Depend upon abstraction, do not depend uponconcretions.
+    
+-----
+-----
+ 
+## Nov 23, 2017
+Continuation of OOP
+ 1. Completed OOP reading material
+ 2. Started OOP assignment and performed CRUD operation
+ 
+ ## Nov 24, 2017
+Continuation of OOP
+ 1. Continued OOP assignment 
+    
+  
+  
