@@ -274,9 +274,65 @@ Continuation of OOP
  1. Completed OOP reading material
  2. Started OOP assignment and performed CRUD operation
  
+-----
+-----
+
  ## Nov 24, 2017
 Continuation of OOP
  1. Continued OOP assignment 
     
+-----
+-----
+
+ ## Nov 27, 2017
+Started Data Structure and Algorithm
+ 1. Learnt Bubble sort, selection sort and insertion sort with their time(O(n^2)) and space complexity.
+ ```
+ 	logn(n) <= n^(1/2) <= nlog(n) <= n^2 <= n^3 <= 2^(n) <= n! 
+ ```
+    Insertion sort is relatively good for small lists, particularly sorted lists. Bubble sort is very inefficient whereas
+    selection sort is better than bubble sort. In selection sort the running time is independent of ordering of elements.
+ 	 
+-----
+-----
+
+ ## Nov 28, 2017
+Continuation of DSA
+ 1. Learnt and implemented Linked list, stack and queue. In linked list search is slow {O(n), O(log(n)) in sortedArrays},
+    insertion is fast { O(1), O(n) in sorted arrays} and deletion is fast { O(1), O(n) in sorted arrays}
+ 
+-----
+-----
+
+  ## Nov 29, 2017
+Continuation of DSA
+ 1. Learnt Mergesort, recursion and tower of hanoi 
+
+-----
+-----
+
+  ## Nov 30, 2017
+Continuation of DSA
+ 1. Binary Tree and Binary Search Tree
+    In binary tree, a node contains only two child at max, with smaller on the left and greater on the right. On the other hand 
+    in case of binary search tree the nodes are arranged in ordered, thus it is also called ordered binary tree.
+ 2. Tree Traversal
+    a. In order
+       traverse left sub tree, then visit root and finall the right sub tree.
+    b. Pre order
+       Visit root, traverse left sub tree and finally the right sub tree.
+    c. Post order
+       Left, right and root.
+
+-----
+-----
+
+  ## Dec 1, 2017
+Continuation of OOP
+ 1. Learnt and implemented shell sort and quick sort. Completed the DSA, first course.
+ 
+-----
+-----
+
   
   
