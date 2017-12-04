@@ -278,7 +278,7 @@ Continuation of OOP
 -----
 
  ## Nov 24, 2017
-Continuation of OOP
+ Continuation of OOP
  1. Continued OOP assignment 
     
 -----
@@ -297,22 +297,22 @@ Started Data Structure and Algorithm
 -----
 
  ## Nov 28, 2017
-Continuation of DSA
+ Continuation of DSA
  1. Learnt and implemented Linked list, stack and queue. In linked list search is slow {O(n), O(log(n)) in sortedArrays},
     insertion is fast { O(1), O(n) in sorted arrays} and deletion is fast { O(1), O(n) in sorted arrays}
  
 -----
 -----
 
-  ## Nov 29, 2017
-Continuation of DSA
+ ## Nov 29, 2017
+ Continuation of DSA
  1. Learnt Mergesort, recursion and tower of hanoi 
 
 -----
 -----
 
-  ## Nov 30, 2017
-Continuation of DSA
+ ## Nov 30, 2017
+ Continuation of DSA
  1. Binary Tree and Binary Search Tree
     In binary tree, a node contains only two child at max, with smaller on the left and greater on the right. On the other hand 
     in case of binary search tree the nodes are arranged in ordered, thus it is also called ordered binary tree.
@@ -327,12 +327,51 @@ Continuation of DSA
 -----
 -----
 
-  ## Dec 1, 2017
-Continuation of OOP
+ ## Dec 1, 2017
+ Continuation of OOP
  1. Learnt and implemented shell sort and quick sort. Completed the DSA, first course.
  
 -----
 -----
 
-  
+ ## Dec 4, 2017
+ Starting of MySQL
+ 1. Adding root password 
+```
+	mysqladmin -u root password "password_exp";
+```
+ 2. The various commands used in mysql with their functions are: 
+```
+	SHOW DATABASES; [To view databases]
+	USE databases_name; [To change database]
+	SHOW TABLES; [Displays tables in database]
+	SHOW COLUMNS FROM table_name; [Displays columns from table]
+	SELECT a,b,c FROM table_name WHERE column='value';
+	CREATE DATABASE database_name;
+```
+ 3. Setting users and privileges
+```
+	USE mysql;	
+	INSERT INTO user (host, user,password,select_priv,insert_priv,update_priv) values 						('localhost','amatya',password('password'),'n','y','y');
+	FLUSH PRIVILEGES;
+
+	mysql -u username -p [to login]
+
+	To Grant all privileges:
+	GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost';
+
+	Delete Users:
+	DROP user 'username'@'localhost';
+```
+4. Datatypes in mysql
+``` 
+	INT [unsigned-> 0 to 2^32-1    signed-> -2^16 to 2^16-1]
+	FLOAT(M,D) display length (M) and number of decimals (D)
+	DATE [yyyy-mm-dd]
+	CHAR(M) [fixed length(M) string bet 1 and 255 chars]
+	VARCHAR(M) [variable length string bet 1 to 255 char]
+	BLOB or TEXT- Binary Large Objects usually image or other types of files
+```
+-----
+-----
   
