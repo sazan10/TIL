@@ -372,6 +372,113 @@ Started Data Structure and Algorithm
 	VARCHAR(M) [variable length string bet 1 to 255 char]
 	BLOB or TEXT- Binary Large Objects usually image or other types of files
 ```
------
------
   
+-----
+
+-----
+
+
+## Dec 5, 2017
+
+MySQL continuation
+1 . Creation of table
+
+	CREATE TABLE table_name(column_name column_type);
+	
+2 . Insert  into tables
+
+	INSERT INTO table_name (field/col_name1,name2,...) VALUES (value1, value2,...)
+
+3 . Select with Grouping and ordering
+	
+	SELECT * FROM table_name WHERE(YEAR(now()-YEAR(year_field)) < value;
+	
+	SELECT * FROM table_name ORDER BY field_name ASC LIMIT value;
+	
+	SELECT * FROM table_name GROUP BY field_name DESC LIMIT value;
+	
+4 . Comparing Two tables
+	
+	SELECT field_a, field_b FROM table_a, table_b WHERE table_a.id=table_b.id;
+	 
+5 . Delete 
+	
+	DELETE FROM table_name [WHERE clause];
+
+6 . Update
+
+	UPDATE table_name SET field1=value1,field2=value2,... [WHERE clause];
+	
+7 . Using LIKE
+	
+	SELECT * FROM table_name WHERE field LIKE "%(ending_seq)"; 
+
+8 . Regex
+
+ Pattern     |Meaning   
+-------------|-------------	
+^|Beginning of string
+$|End of string
+.|Any single character
+[...]|	 Any char listed bet square brackets
+[^...]| Any char not listed bet square brackets
+*| zero or more instances of preceding element
++| one or more instances of preceding element
+\{n} | n instances of preceding element
+\{m,n} | m through n instances of preceding term
+	
+	SELECT field FROM table_name WHERE field REGEXP 'regex';
+	
+9 .  Modify Table
+
+	ALTER TABLE table_name DROP field;
+	ALTER TABLE table_name ADD field  type;
+	ALTER TABLE table_name MODIFY field type;[modify type of column]
+	ALTER TABLE table_name RENAME TO new_name;
+	
+10 . Index and primary key
+ Primary key is for uniqueness whereas index doesn't define uniqueness,  and is used to more quickly find rows in the table.
+
+	CREATE [UNIQUE] INDEX index_name  ON table_name (column1, column2, ...);	
+	ALTER TABLE table_name ADD PRIMARY  KEY(column_list);
+	ALTER TABLE table_name ADD UNIQUE/INDEX index_name (column_list);
+
+11 . Cloning a Table
+	
+	SHOW CREATE TABLE table1_name \G;
+	--create table with same structure after copying
+	INSERT INTO clone_table(field1, field2,...) SELECT * FROM table1_name 
+	  
+12 . Saving data into file
+mysql --local-infile=1 -u root -p [enable writing from txt file to table]
+	
+	SELECT * FROM table_name INTO OUTFILE 'path[txt,csv];
+	SELECT * FROM table_name INTO OUTFILE 'path[txt,csv]  FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' ;
+	LOAD DATA LOCAL INFILE 'path' INTO TABLE table FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' ;
+
+13 . Using sqldump
+	
+To dump table from database into file
+	
+	mysqldump -u root -p database_name table_name > [path]
+
+To dump whole database into file
+	
+	mysqldump -u root -p database_name > [path]
+
+Importing to databae from file
+	
+	mysql -u root -p database_name < file_name
+	
+14 . Import using MYSQLIMPORT
+
+	mysqlimport -u root -p --local database_name path
+	mysqlimoprt -u root -p --local --fields-terminated-by="," --lines-terminated-by="\r\n" database_name file_name
+
+15 . Import using LOAD DATA
+
+	LOAD DATA LOCAL INFILE 'path' INTO TABLE table_name; 
+
+
+
+
