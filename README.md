@@ -537,8 +537,12 @@ View is a temporary table which is dynamic and updates as soon as data changes
 	-- follow up with select statement
 	
 10 . ACID
+
 Atomicity: All part of transaction fail or succeed together
+
 Cosistency: The database will always be consistent
+
 Isolation: No transaction can affect other transaction
+
 Durability: Once the transaction is commited it wont get lost 
 	
