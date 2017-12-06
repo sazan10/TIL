@@ -480,5 +480,65 @@ Importing to databae from file
 	LOAD DATA LOCAL INFILE 'path' INTO TABLE table_name; 
 
 
+-----
+-----
 
+ ## Dec 6, 2017
+SQL continuation
+1 . Accessed localhost database through phpmyadmin
 
+2 . Using IN
+	
+	SELECT field FROM talbe_name WHERE field [NOT]IN (value1, value2,..); 
+
+3 . Custom Columns
+	
+	SELECT CONCAT(field1, ' ,', field2) AS new_field FROM table_name;
+	SELECT field1, field2, field2-1 AS new_field FROM table_name;
+	
+4 . Functions
+Some functions used in mysql are:
+	
+	CONCAT(), SUM(), AVG(), UPPER(), SQRT(), COUNT(), MAX() 
+	
+5 .  SubQueries
+	
+	SELECT field1 FROM table_name WHERE field2 > (SELECT AVG(field) FROM table_name);
+	
+6 . Joining tables
+
+	SELECT table1.field1, table1.field1, table2.field1 FROM table1, table2 [WHERE clause] 
+
+![alt text](https://www.w3schools.com/sql/img_innerjoin.gif  "join table")
+
+	SELECT table1.field1, table1.field1, table2.field1 FROM table1 LEFT OUTER JOIN table2 [ON clause] 
+	
+![alt text](http://www.dofactory.com/Images/sql-left-join.png "left outer join") 
+
+	SELECT table1.field1, table1.field1, table2.field1 FROM table1 RIGHT OUTER JOIN table2 [ON clause] 
+
+![alt text](http://www.dofactory.com/Images/sql-right-join.png "right outer join")
+
+7 . Union 
+Works similar to OR but the fields should be same in both the SELECT statements. Using UNION ALL duplicate values can also be displayed.
+
+	SELECT field FROM table_name [WHERE clause]
+	UNION
+	SELCET field FROM table_name [different WHERE clause] 
+	
+8 . Full Text Searching
+
+	SELECT field1, field2 FROM table_name WHERE Match(field) Against('+expre -expre' IN BOOLEAN MODE)
+	
+9 . View
+View is a temporary table which is dynamic and updates as soon as data changes
+	
+	CREATE VIEW AS view_name 
+	-- follow up with select statement
+	
+10 . ACID
+Atomicity: All part of transaction fail or succeed together
+Cosistency: The database will always be consistent
+Isolation: No transaction can affect other transaction
+Durability: Once the transaction is commited it wont get lost 
+	
