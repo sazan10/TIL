@@ -545,4 +545,90 @@ Cosistency: The database will always be consistent
 Isolation: No transaction can affect other transaction
 
 Durability: Once the transaction is commited it wont get lost 
+
+-----
+
+-----
+
+## Dec 8, 2017
+1 .Foreign Keys
+Foreign keys are keys to link two tables. It is a field in one talbe that refers to primary key in anther table.
+
+	FOREIGN (field) REFERENCES table2(field);
+	
+MongoDB
+1 . Some basic commands are:
+	
+	--to view databases
+	show dbs
+	--to switch databases
+	use database_name
+	--show currently working database
+	db
+
+2 . Add user
+	
+	db.createUser({user:"user_name", pwd:"password", roles:["readWrite","dbAdmin"]});
+
+3 . Create collection
+
+	db.createCollection('collection_name');
+	show collections
+
+4 . Insert into collection
+	
+	db.collection_name.insert({field1:"value", field2:"value2"});
+	
+5 . Find value in collection
+	
+	db.collection_name.find({field1:"value"});
+	db.collection_name.find().pretty();
+	
+6 . Deleting collection
+	
+	db.collection_name.drop();
+	
+7 . Update collection
+	
+	db.collection_name.update(json_data_to_udate,json_data_dest[multiple fields]);
+	--to update only specific fields
+	db.collection_name.update({...},{$set:{...}});
+	db.collection_name.update({...},{$inc:{field:incre_value}}):
+	
+8 . Remove a field
+
+	db.collection_name.update({field:value},{$unset:{field_to_unset:1}});
+	
+9 . Insert if not found
+
+	db.collection_name.update(json_data_to_udat,json_data_dest[multiple fields],{upsert:true});
+	 
+
+10 . Rename field for specific record
+
+	db.collection_name.update({field:value},{$rename:{"old_field_name":"new_name"}});
+	
+11 . Remove record
+	
+	db.collection_name.remove({},{});
+	
+12 . Using AND/OR , less(lt), greater (gt) ,gte,ne,lte
+	
+	db.collection_name.find({$[and/or]:[{key1:value1},{key2:value2}]}])
+	db.collection_name.find({<key>:{$lt:<value>}});
+	
+13 . Sort
+	
+	db.collection_name.find().sort({key/field:1/-1});
+	
+14 . Count, limit 
+	
+	db.collection_name.find().count();
+	db.collection_name.find().limit(value);
+	
+15 . Iterate through:
+	
+	db.collection_name.find().forEach(function(arg){print(doc.field)});
+	
+
 	
