@@ -673,6 +673,7 @@ MongoDB
 	db.collectionName.update({fieldName:"toFind"},{$set:{fieldName:"toUpdateto"}},{multi:true});
 			
 Advanced Java
+
 1 . Different stages in the life cycle of a thread are:
 
 - New- beginning of life cycle... new thread remains in this state until program starts the thread.
@@ -722,7 +723,7 @@ Advanced Java
 	public static void yield() 'current thread yields to another thread of same priority'
 	public static void sleep(long millisec) 'current thread blocks for specified milliseconds'
 	public static boolean holdsLock(Object x) 'true if the current thread holds the lock on the given Object'
-	public static Thread currentThread() ' reference to the currently running thread'
+	public static Thread currentThread() 'reference to the currently running thread'
 	public static void dumpStack() 'prints the stack trace for the currently running thread, useful for debugging'
 	
 ```	
