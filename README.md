@@ -630,5 +630,103 @@ MongoDB
 	
 	db.collection_name.find().forEach(function(arg){print(doc.field)});
 	
+-----
 
+-----
+
+## Dec 11, 2017
+	
+1 . To skip :
+		
+	db.collectionName.find().skip(value);
+			
+2 . To create, get and drop index :
+
+	db.collectionName.ensureIndex({fieldName:1});
+		
+	db.collectionName.getIndexes();
+	
+	db.collectionName.dropIndex({indexedFieldName:1});
+		
+3 . Aggregation
+
+	db.employees.aggregate([{$group:{_id:"$fieldName",total:{$sum:1}}}]);	
+	db.employees.aggregate([{$group:{_id:"$fieldName",MaxAge:{$max:"$Age"}}}]);
+
+4 . Backup and Restore
+```bash	
+	mongodump;
+	mongorestore;
+	mongodump --db databaseName
+	mongorestore --db databaseName path
+	mongodump --db databaseName --collection collectionName
+	mongorestore --db databaseName --collection collectionName path
+```
+
+5 . Update and insert if not existing
+
+	 db.collectionName.update({fieldName:"toFind"},{fieldName:"toUpdateto with other non updating field"},{upsert : true});
+
+			
+6 .  Update multiple data at once
+	
+	db.collectionName.update({fieldName:"toFind"},{$set:{fieldName:"toUpdateto"}},{multi:true});
+			
+Advanced Java
+1 . Different stages in the life cycle of a thread are:
+
+- New- beginning of life cycle... new thread remains in this state until program starts the thread.
+- Runnable- after thread is started... thread is executing its task.
+- Waiting- while thread waits for another thread to perform a task. Becomes runnable only when the other thread signals to continue executing.
+- Timed waiting- specified interval of time. Becomes runnable if time expires or when the event it is waiting for occurs.
+- Terminated- when task is completed or thread terminates.
+
+2 . Thread Priorities
+-  min priority(1), max priority(10), default_normal pririty(5)
+
+3 . Creation of thread by implementing a Runnable Interface
+
+- implement run method
+
+		public void run(){}
+	
+- Instantiate Thread Object
+
+		Thread(Runnable threadObj, String threadName);
+
+- Start a Thread by calling start() method which executes a call to run() method
+
+4 . Creating a Thread by Extending a Thread Class
+
+- Override run() method in available Thread class
+
+		public void run( )
+		
+- Start thread by calling start() method
+
+5 . Thread Methods
+```bash
+	public void start()  'Starts the thread and envokes the run() method'
+	public void run() 'run method is invoked on the targeted Runnable object'
+	public final void setName(Strin g name) 'Changes the name of the thread object'
+	public void getName() 'retrieve name of thread object'
+	public final void setPriority(int priority) 'Set priority of thread object'
+	public final void setDaemon(boolean on) 'true denotes thread as daemon thread'
+	public final void join(long millisec) 'block current thread until second terminates or specified time expires'
+	public void interrupt() 'interrupts this thread'
+	public final boolean isAlive() 'returns true if thread is alive'
+```	
+	
+6 . Static Methods
+```bash
+	public static void yield() 'current thread yields to another thread of same priority'
+	public static void sleep(long millisec) 'current thread blocks for specified milliseconds'
+	public static boolean holdsLock(Object x) 'true if the current thread holds the lock on the given Object'
+	public static Thread currentThread() ' reference to the currently running thread'
+	public static void dumpStack() 'prints the stack trace for the currently running thread, useful for debugging'
+	
+```	
+
+7 . Factory Pattern
+When a method returns one of several possible classes that share a common super class, and the class is chosen at runtime.
 	
