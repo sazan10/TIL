@@ -730,3 +730,37 @@ Advanced Java
 7 . Factory Pattern
 When a method returns one of several possible classes that share a common super class, and the class is chosen at runtime.
 	
+-----
+
+-----
+
+## Dec 12, 2017
+Advanced Java Continuation
+
+1 . Abstract Factory Pattern
+Similar to Factory pattern, but everything is encapsulated. Generally the methods are extended/implemented for creating factory of factories. Factory method is a single method whereas abstract factory is an object. Thus, A factory can create objects that derive from a particular base class.An abstract factory can be considered as a factory that creates other factories, and these factories in turn create objects derived from base classes.	
+
+2 . Singleton Pattern
+This pattern involves a single class which is responsible to create an object while making sure that only single object gets created. SingleObject class have its constructor as private and have a static instance of itself and the following describes the way to get the only object from the singleton class:
+
+	SingleObject object = SingleObject.getInstance();
+	--access the methods
+	 object.method;
+	 
+3 . Builder Pattern
+Builder is a pattern used to create complex object using simple objects
+    
+4 . Iterator Pattern
+This pattern is used to get a way to access the elements of a collection object in sequential manner without any need to know its underlying representation. 
+
+5 . MVC(Model View Controller) Pattern
+Model represents an object, View represents the visualization of the data that model contains. Controller acts on both model and view. It controls the data flow into model object and updates the view whenever data changes. It keeps view and model separate.
+
+6 . JDBC
+The following are the steps required to handle databases:
+
+- Import the packages: packages containing the JDBC classes need to be imported, eg import java.sql.*
+- Register the JDBC driver: initialize a driver  to open a communications channel with the database
+- Open a connection: Requires using the DriverManager.getConnection() method to create a Connection object., physical connection
+- Execute a query: object of type Statement for building and submitting an SQL statement to the database
+- Clean up the environment:  Requires explicitly closing all database resources
