@@ -765,3 +765,62 @@ The following are the steps required to handle databases:
 - Open a connection: Requires using the DriverManager.getConnection() method to create a Connection object., physical connection
 - Execute a query: object of type Statement for building and submitting an SQL statement to the database
 - Clean up the environment:  Requires explicitly closing all database resources
+
+-----
+
+-----
+
+## Dec 12, 2017
+Advanced Java 
+
+1 . Generic methods
+	
+	class Class_name{
+	public <T> void funciton_name(T[] x){
+		for(T b:x)
+			sout}
+	-- To call function
+	Class_name.<Type>function_name(Type Object)
+	
+2 . Generic Return Type
+	
+	public <T extends Comparable<T>> T func_name(T a,T b){
+	-- the above method only accepts methods which extends comparable
+		T new_ = a;
+		if(a.compareTo(b) >0)
+			new_=b;
+		return new_;}
+		
+2 . Using Generic in Class
+
+	class Bottle<T>
+	{public [T/Object] liquid;}
+	
+	{	Water w= new Water();
+		Bottle <Water>b = new Bottle<>();
+		w = [(Water)] b.liquid; }
+	-- Here, typecasting is needed if 'Object' type is used and not for generic
+	
+3 . Bounded Generic 
+Used to confine the generic type to certain group.
+	
+	class Class_name<T extends R>
+	
+	-- for multiple bounds, the concrete type is placed first
+	class Class_name<T extends R & S> 
+	-- here, R is concrete class and S may be an interface
+	
+4 . Inheritance and subtyping
+	
+	class Class_A<T> extends Class_B<T>{}
+	Class_B<Type> a = new Class_A<Type>;
+	--Here, the Type argument should be same for both
+
+ 5 . Wildcards
+ 
+ 	public void function_name(Class_name<?> name){}
+ 	--Lower/Upper Bounded Wildcards
+ 	public void function_name(Class <? extends Parent> name){}
+ 	public void function_name(Class <? super Child> name){}
+ 	
+ When working with lists, Generic can be used to add to list while wildcards show error.
