@@ -824,3 +824,159 @@ Used to confine the generic type to certain group.
  	public void function_name(Class <? super Child> name){}
  	
  When working with lists, Generic can be used to add to list while wildcards show error.
+ 
+ 
+ 
+-----
+
+-----
+
+## Dec 18, 2017
+
+### Gradle
+Gradle is an open source, advanced general purpose build management system. It is built on ANT, Maven, and lvy repositories. Maven uses xml files, gradle uses groovy domain specific language
+
+1 . Gradle builds a script file for handling two things; one is projects and another one is tasks. A task means a piece of work which a build performs. A project is made up of different tasks.
+
+	gradle tasks
+	--shows the available gradle tasks
+	
+	
+	task hello {
+	   doLast {
+	      println 'hi'
+	   }
+	}
+	-- using << in place of doLast
+	task hello << {
+	   println 'tutorialspoint'
+	}
+	
+	-- To execute
+	gradle –q hello
+	
+	
+	
+2 . Adding Dependencies to Tasks
+
+	task taskX << {
+ 	println 'taskX'
+	}
+	task taskY(dependsOn: 'taskX') << {
+   	println "taskY"
+	}
+	
+	task taskY << {
+   	println 'taskY'
+	}
+	task taskX << {
+   	println 'taskX'
+	}
+	taskY.dependsOn taskX
+	
+	
+	--dependencies on tasks strating with 'lib'
+	taskX.dependsOn {
+   	tasks.findAll { 
+      	task → task.name.startsWith('lib') 
+   	}
+	}
+	
+3 . Dependency Management
+
+	apply plugin: 'java'
+
+	repositories {
+   	mavenCentral()
+	}
+
+	dependencies {
+   	compile group: 'org.hibernate', name: 'hibernate-core', version: 	'3.6.7.Final'
+   	testCompile group: 'junit', name: 'junit', version: '4.+'
+	}
+
+4 . Dependency Configurations	
+compile − The dependencies required to compile the production source of the project.
+
+* Runtime − The dependencies required by the production classes at runtime. By default, also includes the compile time dependencies.
+
+* Test Compile − The dependencies required to compile the test source of the project. By default, it includes compiled production classes and the compile time dependencies.
+
+* Test Runtime − The dependencies required to run the tests. By default, it includes runtime and test compile dependencies.
+
+5 . External Dependency
+Dependency on some files that is built outside the current build, and is stored in a repository of some kind, such as Maven central
+
+6 . Build Java Files
+
+	
+	apply plugin: "java"
+
+	sourceSets{
+	main.java.srcDir "src/main"
+	}
+
+	jar{manifest.attributes "Main-Class":"com.sajan.Main"}
+	
+7 . Gradle Wrapper
+
+	task wrpper(type: Wrapper){
+	gradleVerison='1.0-milestone-6'
+	}
+	
+	
+	
+
+ 
+-----
+
+-----
+
+## Dec 22, 2017
+### Spring
+
+The @SpringBootApplication annotation is the starting point of Spring Boot application. 
+
+		@SpringBootApplication
+		public class Application {
+   		public static void main(String[] args) {
+      		SpringApplication.run(Application.class, args);
+   		}
+		}
+		
+The SpringApplication.run(App class, args) sets up default configurations, starts spring app context(container), performs class path scan(which class is service, controller...),starts tomcat server.
+
+
+Controller
+
+The controller class is annotated with @RestController. It lets spring know what is the url being mapped and what should happen when request comes to that url.
+
+@RequestMapping
+
+This annotation is used both at class and method level. The @RequestMapping annotation is used to map web requests onto specific handler classes and handler methods.
+
+	@RequestMapping(value = "/topics", method = RequestMethod.GET)
+	
+	
+@RequestParam
+It enables us a way of sending data from Browser to Server. An example is shown below:
+
+	@RequestMapping(value="/add",method = RequestMethod.POST)
+	public Student addStudent(@RequestParam(value="name") String name,@RequestParam(value="subject", defaultValue = "unknown") String subject){
+ 
+ 	Student student=new Student(name,subject);
+ 	Application.hmStudent.put(new Long(student.getId()),student);
+ 	return student;}
+
+	http://localhost:8080/rest/student/add?name=Joe&subject=english
+	
+@RequestBody
+Using it,  we can pass the JSON  object and  Spring will use Jackson to map that to our  class automatically.
+
+	@RequestMapping(value="/update",method = RequestMethod.PUT)
+	public Student updateStudent(@RequestBody Student student){
+	....
+	return student;}
+	
+Using RESTed Client in Chrome and using put method json object can be pushed to server.
+
