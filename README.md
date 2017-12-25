@@ -2,6 +2,7 @@
 A minimal repo for my #TIL stuffs related to programming, technology and anything.
 
 -----
+
 -----
 
 
@@ -21,6 +22,7 @@ Today I learned different things about Linux.
 ```
 
 -----
+
 -----
 
 
@@ -117,6 +119,7 @@ Learned python
 ```
 
 -----
+
 -----
 
 
@@ -979,4 +982,71 @@ Using it,  we can pass the JSON  object and  Spring will use Jackson to map that
 	return student;}
 	
 Using RESTed Client in Chrome and using put method json object can be pushed to server.
+
+
+-----
+
+-----
+
+## Dec 25, 2017
+### Spring
+
+1 . Accessing Data with JPA
+
+* @Entity: A specific class(suppose Customer) is annotated with @Entity, indicating that it is a JPA entity. It is assumed that this entity will be mapped to a table with same name as class(here Customer) . 
+
+* @Id: The Customer’s id property is annotated with @Id so that JPA will recognize it as the object’s ID. 
+
+* @GeneratedValue: The id property is also annotated with @GeneratedValue to indicate that the ID should be generated automatically.
+
+		@Entity
+		public class Customer {
+		@Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
+		private Long id;
+		private String firstName;
+		private String lastName;
+
+
+Spring Data JPA focuses on using JPA to store data in a relational database. Its most compelling feature is the ability to create repository implementations automatically, at runtime, from a repository interface.
+
+	public interface CustomerRepository extends CrudRepository<Customer, Long> {
+    List<Customer> findByLastName(String lastName);
+	}
+	
+
+
+CustomerRepository extends the CrudRepository interface. The type of entity and ID that it works with,Customer and Long, are specified in the generic parameters on CrudRepository. By extending CrudRepository, CustomerRepository inherits several methods for working with Customer persistence, including methods for saving, deleting, and finding Customer entities.
+
+Spring Data JPA also allows yo to define other query met Customer which JPAallows us to declare.
+
+In a typical Java application, we’d expect to write a class that implements CustomerRepository. But we don’t have to write an implementation of the repository interface. Spring Data JPA creates an implementation on the fly when we run the application.
+
+
+To display output in the console we need to define a logger using
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Application.class;
+	
+The following describes the way to manipulate data from relational table:
+	
+	public CommandLineRunner demo(CustomerRepository repository) {
+		return (args) -> {
+			// save a couple of customers
+			repository.save(new Customer("Jack", "Bauer"));
+		// fetch all customers
+			for (Customer customer : repository.findAll()) {
+				log.info(customer.toString());
+			}
+		//fetch customers by last name
+			for (Customer bauer : repository.findByLastName("Bauer")) {
+				log.info(bauer.toString());
+			}
+
+2 . Accessing data using MongoDB
+It is similar to accessing data using JPA, however it extends MongoRepository and custom setups are needed in application.properties and gradle
+	
+	public interface CustomerRepository extends MongoRepository<Customer, String> {
+    public Customer findByFirstName(String firstName);
+    public List<Customer> findByLastName(String lastName);
+	}
 
