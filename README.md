@@ -1049,4 +1049,35 @@ It is similar to accessing data using JPA, however it extends MongoRepository an
     public Customer findByFirstName(String firstName);
     public List<Customer> findByLastName(String lastName);
 	}
+	
+	
+## Dec 26, 2017
+### Test Driven Development with Junit
+TDD is a development of tests before a feature implementation 
 
+* @Test: The Test annotation tells JUnit that the public void method to which it is attached can be run as a test case. 
+
+* @Test (expected = Exception.class): Sometimes we need to test the exception to be thrown by the test. @Test annotation provides a parameter called 'expected', declares that a test method should throw an exception.
+
+@Before: When writing tests, it is common to find that several tests need similar objects created before they can run. Annotating a public void method with @Before causes that method to be run before the Test method. The @Before methods of super classes will be run before those of the current class.
+
+@After: Annotating a public void method with @After causes that method to be run after the Test method. All @After methods are guaranteed to run even if a Before or Test method throws an exception. The @After methods declared in superclasses will be run after those of the current class. 
+
+Assertion 
+This class provides a set of assertion methods, useful for writing tests. Only failed assertions are recorded.
+
+	void assertEquals(boolean expected, boolean actual)
+	// Checks that two primitives/objects are equal.
+	
+	void assertTrue(boolean condition)
+	// Checks that a condition is true.
+	
+	void assertNotNull(Object object)
+	// Checks that an object isn't null.
+
+Example script for junit testing
+	 
+	@Test(expected = RuntimeException.class)
+	public final void testing_function() {
+	Class.method("1,2,3");}
+	
