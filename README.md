@@ -1050,9 +1050,12 @@ It is similar to accessing data using JPA, however it extends MongoRepository an
     public List<Customer> findByLastName(String lastName);
 	}
 	
+----
+
+----
 	
 ## Dec 26, 2017
-### Test Driven Development with Junit
+### Test Driven Development with JUnit
 TDD is a development of tests before a feature implementation 
 
 * @Test: The Test annotation tells JUnit that the public void method to which it is attached can be run as a test case. 
@@ -1075,9 +1078,180 @@ This class provides a set of assertion methods, useful for writing tests. Only f
 	void assertNotNull(Object object)
 	// Checks that an object isn't null.
 
-Example script for junit testing
+Example script for JUnit testing
 	 
 	@Test(expected = RuntimeException.class)
 	public final void testing_function() {
 	Class.method("1,2,3");}
+	
+	
+#### JUnit - Ignore Test
+The @Ignore annotation helps when there is a case of a test not being ready.
+	
+	@Ignore
+	@Test
+	public void testMethod() {}
+	
+#### JUnit - Parameterized Test
+Parameterized tests allow a developer to run the same test over and over again using different values. There are five steps that need to followed:
+	* Annotate test class with @RunWith(Parameterized.class)
+	* Create a public static method annotated with @Parameters that returns a Collection of Objects (as Array) as test data set
+	* Create a public constructor that takes in what is equivalent to one "row" of test data
+	* Create an instance variable for each "column" of test data
+	* Create test case(s) using the instance variables as the source of the test data 
+	
+----
+
+----
+	
+## Dec 27, 2017
+### Test Driven Development with Junit
+
+* Fixtures: Fixtures is a fixed state of a set of objects used as a baseline for running tests.
+    * setUp() method, which runs before every test invocation.
+    * tearDown() method, which runs after every test method.
+
+* Test suites: A test suite bundles a few unit test cases and runs them together.
+
+		@RunWith(Suite.class)
+		@Suite.SuiteClasses({TestJunit1.class,TestJunit2.class })
+		public class JunitTestSuite {   }
+		
+* Test runner: Test runner is used for executing the test cases.  	
+	
+* JUnit Classes: JUnit classes are important classes, used in writing and testing JUnits. Some of the important classes are:
+
+	* Assert − Contains a set of assert methods.
+	* TestCase − Contains a test case that defines the fixture to run multiple tests.
+	* TestResult − Contains methods to collect the results of executing a test case.
+	
+### TestNG
+TestNG is a testing framework inspired from JUnit and NUnit but introducing some new functionalities that make it more powerful and easier to use.
+
+TestNG is designed to cover all categories of tests: unit, functional, end-to-end, integration, etc. TestNG provides more flexible annotations. An example output after running TestNG is shown below;
+
+	in beforeSuite
+	in beforeTest
+	in beforeClass
+	in beforeMethod
+	in test case 1
+	in afterMethod
+	in beforeMethod
+	in test case 2
+	in afterMethod
+	in afterClass
+	in afterTest
+	in afterSuite
+	
+
+First of all, beforeSuite() method is executed only once. Lastly, the afterSuite() method executes only once. Even the methods beforeTest(), beforeClass(), afterClass(), and afterTest() methods are executed only once. beforeMethod() method executes for each test case but before executing the test case. afterMethod() method executes for each test case but after executing the test case. In between beforeMethod() and afterMethod(), each test case executes.
+
+To execute TestNG an xml file is needed with the following enteries:
+
+	<suite name = "Sample test Suite">
+		<test name = "Sample test">
+			<classes>
+				<class name = "SampleTest" />
+			</classes>
+   		</test>
+	</suite>	
+
+#### Suite Test in TestNG
+It is represented by one XML file, as suite is the feature of execution. A suite can contain one or more tests and is defined by the <suite> tag.
+
+	<suite name="sample">
+		<test name="s">
+			<calsses>
+				<class name ="">
+			</classes>	
+		<test name ="">
+		<test name="">
+			<classes>
+			...
+			
+#### Ignore a test
+A test can be ignored if it is not ready or not required.
+
+	@Test(enabled = false) helps to disable this test case
+
+#### Groups
+Group test is a new innovative feature in TestNG, which doesn’t exist in JUnit framework.
+
+	 @Test(groups = { "functest", "checkintest" })
+	 
+	 //in xml file
+	 <suite name = "Suite1">
+	 	<test name = "test1">
+	 		<groups>
+	 			<run>
+	 				<include name = "functest" />
+	 			</run>
+	 		</groups>
+	 		<classes>
+	 			<class name = "GroupTestExample" />
+	 		</classes>
+	 	</test>
+	 </suite>
+	 
+
+#### Exception Test
+ We can test whether a code throws a desired exception or not.
+ 
+ 	@Test(expectedExceptions = ArithmeticException.class)
+ 	
+#### Dependency Test
+Using dependency we can invoke methods in a test case in a particular order, or you may share some data and state between methods.
+ 
+@Test(dependsOnMethods = { "method_name" })
+// For groups
+ @Test(dependsOnGroups = { "group_name.*" })
+ 
+#### Parameterized Test
+ Parameterized tests allow developers to run the same test over and over again using different values.
+ 	
+ 	@Test
+  	@Parameters("myName")
+   	public void parameterTest(String myName) {}
+   	
+   	//in xml file the following must be added befor class tag
+   	 <parameter name = "myName" value="manisha"/> 
+  
+### JUnit5
+ 	
+ 	JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
+ 	
+#### Meta-Annotations and Composed Annotations
+JUnit 5 allows custom annotations. For example instead of using @Tag(fast) we can create @fast
+
+	@Target({ ElementType.TYPE, ElementType.METHOD })
+	@Retention(RetentionPolicy.RUNTIME)
+	@Tag("fast")
+	public @interface Fast {}
+	
+A standard JUnit test is demonstarted as:
+
+	@BeforeAll
+	static void initAll() {}
+	
+	@BeforeEach
+	void init() {}
+
+	@Test
+	@DisplayName("succeeding test")
+	void succeedingTest() {}
+	
+	@Test
+	void failingTest() {
+        fail("a failing test");}
+
+	@Test
+	@Disabled("for demonstration purposes")
+	void skippedTest() {
+        // not executed}
+	
+	@AfterEac
+	void tearDown() {}
+	
+	@AfterAll
+	static void tearDownAll() {}
 	
