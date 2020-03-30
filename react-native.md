@@ -9,14 +9,93 @@ react-native init app_name
 ```
 ### To run app
 Add the following to package.json in scripts
+
 ```
 "ios":"react-native run-ios",
 "android":"react-native run-android"
 ```
-And use 
-```npm run android/ios
+And use for both ways of installation
+
+``` 
+npm run android/ios
 ```
 
+---
+
+---
+
+### Components Used
+ref: <a> https://reactnative.dev/docs/intro-react-native-components</a>
+
+<table>
+<tr>
+<th>Component in React
+</th>
+<th>
+Component in React-Native
+</th>
+<th>
+Handler function
+</th>
+
+<tr>
+<td>div</td>
+<td> View</td>
+<td></td>
+</tr>
+
+<tr>
+<td> p, span</td>
+<td>Text</td>
+<td></td>
+</tr>
+
+<tr>
+<td> input</td>
+<td>TextInput</td>
+<td> onChangeText</td>
+</tr>
+
+</tr>
+</table>
+---
+
+---
+
+### Flexbox
+
+![Image description](flexbox.png)
+
+![Image description](flexbox1.png)
+
+![Image description](flexbox2.png)
+
+![Image description](flexbox3.png)
+
+---
+
+---
+
+### Creating Styles
+
+Create styles using StyleSheet
+```
+const styles= StyleSheet.create({
+	container: {
+	flex:1,
+	backgroundColor:"#fff",
+	alignItems:"center",
+	justifyContent: "center"
+}})
+```
+Apply them as 
+``` 
+<View style = {styles.container}>
+```
+
+---
+
+---
 
 ### Installing Libraries
 
