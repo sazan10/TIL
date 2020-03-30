@@ -35,7 +35,7 @@ ref: <a> https://reactnative.dev/docs/intro-react-native-components</a>
 Component in React-Native
 </th>
 <th>
-Handler function
+Handler function/Applying Process
 </th>
 
 <tr>
@@ -61,6 +61,7 @@ Handler function
 <td>Button</td>
 <td> onPress</td>
 </tr>
+
 </tr>
 </table>
 ---
@@ -100,6 +101,135 @@ Apply them as
 ```
 
 ##### Note: React Native does not support css rather emulates. When we want to add a button next to inputtext inline (block-inline for flexbox) would have done the trick but react native does not support it and we can add only flex or none to 'display:flex'. The solution is to add another nexted View with flexbox styling 
+
+---
+
+---
+
+### Touch Events
+By default Views, Texts, ListItems are not touchable. So to make them touchable we need to wrap them using <b>Touchable, TouchableWithoutFeedback, TouchableHighlight, TouchabelOpacity, TouchableNativeFeedback</b>.
+
+```
+<TouchableWithoutFeedback onPress={function_to_dispatch} >
+    <View style ={styles.listItem}>
+        <Text> {props.placeName}</Text>
+    </View>
+</ToucableWithoutFeedback>
+```
+
+
+---
+
+---
+
+### Using ScrollView/FlatList
+Wrap with ScrollView to add scrollable features to component
+```
+<ScrollView>
+	<Child/> #array using map
+</ScrollView>
+```
+However the use of ScrollView is discouraged as it is inefficient since it renders all elements. Instead use FlatList as it renders only component necessary to be displayed. The ScrollView took mapped array as child but in case of flatlist it can take array directly.
+
+Using FlatList.
+Let us consider an example to add a place name on clicking add from textInput.
+```
+placeAddHandler=placeName=>{
+	this.setState(prevState=>{
+		return{
+			places: prevState.places.concat({
+			 	key: Math.random(),
+			 	value: placeName
+			 	})
+			 }
+		}
+	)}
+```
+
+Deleting the place onPress
+```
+placeDeleteHandler = key=>{
+	this.setState(prevState=>{
+		return {
+			places: prevState.places.filter(place =>{
+				return place.key!==key;
+				})
+			}
+			})
+			}
+```
+Creating the FlatList with ListItem
+```
+<FlatList 
+	style={styles.listContainer}
+	data={props.places}  #array of object with key and value as given above 
+	renderItem={(info)=>(
+		<ListItem
+			placeName={info.item.value}
+			onItemPressed={()=> props.onItemDeleted(info.item.key)} />
+		)}
+	/>
+```
+---
+
+---
+
+### Adding static Image
+```
+import imageSource from 'assets/abc.jpg';
+import {Image} from 'react-native';
+<Image source ={imageSource} style={styles.imageStyle} />
+	const styles=StyleSheet.create({
+	imageStyle:{width:30, height:30; padding:5}
+	})
+```
+
+---
+
+---
+
+### Adding Network Image
+To add network image it needs to be supplied as an object. Also width and height are a must since react-native has no way to calculate it which its does on its own for static images.
+
+```
+import imageSource from 'assets/abc.jpg';
+import {Image} from 'react-native';
+<Image source ={{uri:"https:google.com/hello.jpg"}} style={styles.imageStyle} />
+	const styles=StyleSheet.create({
+	imageStyle:{width:30, height:30; padding:5}
+	})
+```
+---
+
+---
+
+### Supported Javascript features
+
+ref: https://reactnative.dev/docs/0.5/javascript-environment
+
+* arrow functions
+* let, const
+* spreading 
+* classes 
+* for 
+* async functions 
+* jsx 
+* console.log
+* xmlhttprequest, fetch so also axios
+* set, clear timeout, 
+---
+
+---
+
+### Modals 
+onRequestClose is required on android in case on tap on back button
+
+```
+<Modal onRequestClose={closeModalFunction} visible={state.showModal !==null} animationType="slide">
+	<Children>
+</Modal>
+```
+
 ---
 
 ---
@@ -130,7 +260,7 @@ npm install react-native-vector-Icons --save
 ```
   import com.oblador.vectoricons.VectoriconsPackage;
   ...  
-@Override  
+  @Override  
   protected List<ReactPackage> getPackages() {  
     return Arrays.<ReactPackage>asList(  
       new MainReactPackage(),  
