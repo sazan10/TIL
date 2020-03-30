@@ -56,6 +56,11 @@ Handler function
 <td> onChangeText</td>
 </tr>
 
+<tr>
+<td> button- onClick</td>
+<td>Button</td>
+<td> onPress</td>
+</tr>
 </tr>
 </table>
 ---
@@ -63,6 +68,7 @@ Handler function
 ---
 
 ### Flexbox
+Default flexDirection is 'column'. Also unspecifying flex:1 value will make it take as much space as child elements need and not all available.
 
 ![Image description](flexbox.png)
 
@@ -93,6 +99,7 @@ Apply them as
 <View style = {styles.container}>
 ```
 
+##### Note: React Native does not support css rather emulates. When we want to add a button next to inputtext inline (block-inline for flexbox) would have done the trick but react native does not support it and we can add only flex or none to 'display:flex'. The solution is to add another nexted View with flexbox styling 
 ---
 
 ---
