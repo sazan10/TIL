@@ -339,6 +339,29 @@ const mapDispatchToProps = dispatch => {
 
 ---
 
+
+### Debugging
+
+#### Debugging remotely
+* Click debug JS remotely and visit localhost:8081 then you can use features like console.log();
+* use a react-native-debugger, download it, extract it and add it to your emulator
+* Adding redux devTools
+```
+import {compose} from 'redux';
+let composeEnhancers = compose;
+if(__DEV__){
+	composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+	}
+
+const configureStore=()=>{
+    return createStore(rootReducer, composeEnhancers());
+    }
+```
+<b> Note: For all devTools expect first i.e debug JS remotely step two is needed. react-native-debugger has advanced debugging features than normal JS remote debugging.</b>
+
+---
+
+---
 ### Installing Libraries
 
 ```
