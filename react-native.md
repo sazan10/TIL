@@ -71,7 +71,7 @@ Handler function/Applying Process
 ### Flexbox
 Default flexDirection is 'column'. Also unspecifying flex:1 value will make it take as much space as child elements need and not all available.
 
-![Image description](flexbox.png)
+![flexDriection or main axis column/vertical, alignitems looks to cross axis](flexbox.png)
 
 ![Image description](flexbox1.png)
 
@@ -225,9 +225,114 @@ ref: https://reactnative.dev/docs/0.5/javascript-environment
 onRequestClose is required on android in case on tap on back button
 
 ```
-<Modal onRequestClose={closeModalFunction} visible={state.showModal !==null} animationType="slide">
+<Modal onRequestClose={closeModalFunction} visible={state.showModal c} animationType="slide">
 	<Children>
 </Modal>
+```
+
+---
+
+---
+
+### Reducer
+```
+npm install --save redux react-redux
+```
+
+![Reducer Structure](reducer.png)
+
+The general trend is to create the folder structure as:
+* store
+&nbsp; &nbsp;  * reducers
+&nbsp; &nbsp;  * actions
+
+Typical example of reducer:
+```
+import {ADD_PLACE, DELETE_PLACE, ...} from './actionTypes';
+const initialState = {
+  places: [],
+  selectedPlace: null };
+ 
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+      case ADD_PLACE:
+          return {
+          ...state,
+          places: state.places.concat({
+          key: Math.random(),
+          name: action.placeName})
+          }
+      default:
+          return state;
+      }
+    }
+export default reducer;
+```
+
+actionTypes file:
+```
+export const ADD_PLACE = 'ADD_PLACE';
+export const DELETE_PLACE = 'DELETE_PLACE';
+export const SELECT_PLACE = 'DESELECT_PLACE';
+```
+
+example of action file places.js
+```
+import {ADD_PLACE, DELETE_PLACE, SELECT_PLACE}
+export const addPlace = (placeName) => {
+    return {
+         type: ADD_PLACE
+         placeName: placeName
+         }}
+export const deletePlace = (placeName) => {
+    return {
+         type: DELETE_PLACE
+         }}
+ ....
+```
+Create an index.js file in actions to export all actioncreators from there instead of different action creators when using multiple reducers.
+```
+export { addPlace, deletePlace, selectPlace, deselectPlace } from "./places"
+```
+
+Adding redux to the project. Open index.js and add:
+```
+import { Provider } from 'react-redux';
+import React from 'react';
+import configureStore from './src/store/configureStore';
+const store = configureStore();
+const RNRedux =()=> (
+<Provider store = {store})>
+       <App/>
+</Provider>
+AppRegistry.registerComponent('rncourse', ()=>RNRedux);
+```
+Similarly create a configureStore in store dir:
+```
+import {createStore, combineReducers} from 'redux';
+import placesReducer from './reducers/places';
+const rootReducer = combineReducers({
+    places: placesReducer});
+const configureStore = () => {
+     return creteStore(rootReducer);
+    };
+export default configureStore;
+```
+
+Connecting React Native to Redux
+```
+import {addPlace, deletePlace} from './src/store/actions/index';
+const mapStateToProps = state => [
+     return {
+          places: state.places.places,
+          selectedPalce: state.places.selectedPlace};};
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddPlace: (name) => dispatch(addPlace(name)),
+        onDeletePlace: () => dispatch ( deletePlace()),
+        ...}}
+        
+ export default connect( mapStateToProps, mapDispatchToProps)(App); 
 ```
 
 ---
