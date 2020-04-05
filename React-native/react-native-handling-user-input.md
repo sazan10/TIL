@@ -115,20 +115,42 @@ state ={
 ```
 
 ### Feedback on invalidity
+Create a stylesheet as:
 ```
 	invalid:{
 		backgroundColor :'shadeofred',
 		borderColor: "red"
 		}
-	<TextInput style={[styles.input, props.style, props.valid, !props.valid && props.touched? styles.invalid:null]{ #props.valid? null:styles.invalid, if touched is not used
+	<TextInput style={[styles.input, props.style, props.valid, !props.valid && props.touched? styles.invalid:null]}}/> #props.valid? null:styles.invalid, if touched is not used
 ```
 In component where the input is created:
-111
+```
 <DefaultInput ....... valid={this.state.controls.confirmPassword.valid} 
   touched={this.state.controls.inputfieldname.touched}/>
 ```
 valid is made true onChangeTextHandler as shown above. Also to remove the effects on initial load, create a state 'touched' for each input field(false) and return true onChangeTextHandler for each input field and performs checks as suggested above.
-		
-		
-Create a stylesheet as:
+
+### Handling Keyboard for Input
+Ref: https://reactnative.dev/docs/textinput.html
 ```
+	<DefaultInput 
+		...
+		autoCapitalze={false}
+		autoCorrect = {false}
+		secureTextEntry
+		key boardType="email-address"
+		/>
+```
+
+### Auto adjusting keyboard to uncover inputfields
+Wrap with
+```
+	<KeyboardAvoidingView style={styles.container} behavior="padding"/>
+```
+
+### Close keyboard on pressing outside the field
+```
+	<TouchableWIthoutFeedback onPress={Keyboard.dismiss} >
+```
+However, it could not wrap around ImageBackground or KeyboardAvoidingView earlier
+	

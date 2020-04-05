@@ -1,6 +1,6 @@
-#FLUTTER
+# FLUTTER
 
-##Flutter Architecture
+## Flutter Architecture
 * UI as code : Build a widget tree. 
 * NO drag and drop but only code.
 * Everything is a widget
@@ -12,16 +12,16 @@
 ```
 
 ## Folder Structure
-####.idea Folder
+#### .idea Folder
 Holds configuration for android studio.
 
-####android Folder
+#### android Folder
 flutter compiled code will be injected to this folder for android project.
 
-####build Folder
+#### build Folder
 Holds output of the flutter application. Automatically done while deployment.
 
-####ios Folder
+#### ios Folder
 flutter compiled code will be injected to this folder for android project.
 
 #### lib Folder
@@ -91,7 +91,7 @@ Need to rename the named argument to name:'sdfd'
 #### Scaffold 
 It is used to create base page. It consists body, appbar, drawer, floating actionbutton and so on.
 
-###NOTE USE CTRL+SPACE TO KNOW AVAILABLE ARGUMENTS WITHIN EACH WIDGET/OBJECT
+### NOTE USE CTRL+SPACE TO KNOW AVAILABLE ARGUMENTS WITHIN EACH WIDGET/OBJECT
 
 ```
 Ctrl+Shift+i 
@@ -105,7 +105,7 @@ Use this to format document in vs code.
 		}
 ```
 
-####SetState
+#### SetState
 setState calls the build method again which rebuilds the widget tree but does not rerender the entire tree but only the changed ones.
 
 
