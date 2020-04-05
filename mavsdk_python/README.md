@@ -6,13 +6,13 @@ Refer to the attached pdf file for detailed steps or visit<a> https://discuss.px
 As suggested download the mavsdk binary image specifically armv7 version
 Ordered steps:
 * Install mavsdk using source build as instructed:
-* Download and replace mavsdk server using the armv7 version from <a>https://github.com/mavlink/MAVSDK/releases/tag/v0.23.0</a> or it is contained in this repo
+* Download and replace mavsdk server using the armv7 version from <a>https://github.com/mavlink/MAVSDK/releases/tag/v0.23.0</a> or it is contained in this repo. Rename it and replace it in the corresponding folder.
 * provide permission if needed chmod +x to mavsdk server
 * add shebang line if it shows OS error #! /usr/bin/env python
 
 <b> Note: Complete each step and be patient as build takes a lot of time</b>
 
-Ref:
+Ref for mavsdk installation:
 https://mavsdk.mavlink.io/develop/en/contributing/build.html
 https://github.com/mavlink/MAVSDK-Python
 
