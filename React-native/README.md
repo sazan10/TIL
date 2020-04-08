@@ -405,12 +405,39 @@ npm install react-native-vector-Icons --save
    ```
    
   *  For only some
-  ```
+```
       project.ext.vectoricons = [  
         iconFontNames: ['Ionicons.ttf'] // Name of the font files you want to copy  
     ]
-  ```
-  ```      
-        apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"  
-  ```  
+```
+```      
+        apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+          
+```  
+  
+### Using Thunk
+  
+ On using thunk we can add side effects/sync/asynchronous codes to actions in store and instead of returning json object for actiontype we can return a dispatch function with side effects.
+```
+ immport {applyMiddlerware} from 'react-redux';
+ import thunk from 'redux-thunk';
+ 
+ const configureStore = () =>{
+ 	return createStore(rootReduces, composeEnhancers(applyMiddleware(thunk));
+ 	}
+ 	
+```
+ Thunk middleware will automatically step in in action createors. Just return a dispatch function 
+ 
+```
+ export const addPlace(placeName, location, image) => {
+ 	return dispatch => {
+ 		const placeData ={
+ 		....
+ 		}
+ 		fetch(url,mehod: body:....}
+ 		});
+ 		
+```
+ 
   
