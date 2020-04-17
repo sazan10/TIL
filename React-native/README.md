@@ -1,6 +1,9 @@
 ### Creating React App
 ```
 npx create-react-native-app app_name
+		OR using expo
+expo init app_name
+
 ```
 ### Using natve cli(Recommended)
 ```
@@ -13,6 +16,10 @@ Add the following to package.json in scripts
 ```
 "ios":"react-native run-ios",
 "android":"react-native run-android"
+
+USING EXPO
+npm start
+scan bar code
 ```
 And use for both ways of installation
 
@@ -128,6 +135,8 @@ Wrap with ScrollView to add scrollable features to component
 <ScrollView>
 	<Child/> #array using map
 </ScrollView>
+
+#For scrollview use flexGrow:1 instead of flex:1 in contentContainerStyle stylesheet if used
 ```
 However the use of ScrollView is discouraged as it is inefficient since it renders all elements. Instead use FlatList as it renders only component necessary to be displayed. The ScrollView took mapped array as child but in case of flatlist it can take array directly.
 
@@ -162,6 +171,7 @@ Creating the FlatList with ListItem
 ```
 <FlatList 
 	style={styles.listContainer}
+	keyExtractor={(item, index)=>item.id}
 	data={props.places}  #array of object with key and value as given above 
 	renderItem={(info)=>(
 		<ListItem
@@ -178,8 +188,8 @@ Creating the FlatList with ListItem
 ```
 import imageSource from 'assets/abc.jpg';
 import {Image} from 'react-native';
-<Image source ={imageSource} style={styles.imageStyle} />
-	const styles=StyleSheet.create({
+<Image source ={imageSource} style={styles.imageStyle} resizeMode="cover/contain" /> #resizeMode can be used to preserve aspect ratio
+ 	const styles=StyleSheet.create({
 	imageStyle:{width:30, height:30; padding:5}
 	})
 ```
@@ -194,7 +204,7 @@ To add network image it needs to be supplied as an object. Also width and height
 ```
 import imageSource from 'assets/abc.jpg';
 import {Image} from 'react-native';
-<Image source ={{uri:"https:google.com/hello.jpg"}} style={styles.imageStyle} />
+<Image source ={{uri:"https:google.com/hello.jpg"}} style={styles.imageStyle} fadeDuration={300} /> #300 ms to load network image with fade effect  
 	const styles=StyleSheet.create({
 	imageStyle:{width:30, height:30; padding:5}
 	})
@@ -439,5 +449,5 @@ npm install react-native-vector-Icons --save
  		});
  		
 ```
- 
+
   
