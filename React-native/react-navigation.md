@@ -222,7 +222,7 @@ In the second parameter for createDrawerNavigator use
     }
 ```
 
-### sing Switch
+### Using Switch
 ```
             <Switch
                 trackColor={{ true: Colors.primaryColor }}
@@ -230,4 +230,17 @@ In the second parameter for createDrawerNavigator use
                 value={props.state}
                 onValueChange={props.onChange}
             />
+```
+
+### Adding Icons to side drawer
+In createStackNavigator use:
+```
+	const orderNavigator = createStackNavigator({
+		orders:OrdersScreen},
+		{
+		navigationOptions: {
+		drawerIcon: drawerConfig=>(
+		<Ionicons name = 'md-create'  color={drawerConfig.tintColor}/>
+		)
+		}})
 ```
