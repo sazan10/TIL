@@ -159,4 +159,67 @@ const styles =StyleSheet.create({
 		});
 <View style={[styles.container, {width: Dimenstions.get("window").width*0.8}]}
 ```
-				
+### Icons for SideDrawer
+```
+const OrdersNavigator = createStackNavigator(
+  {
+    Orders: OrdersScreen
+  },
+  {
+    navigationOptions: {
+      drawerIcon: drawerConfig => (
+        <Ionicons
+          name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+          size={23}
+          color={drawerConfig.tintColor}
+        />
+      )
+    },
+    defaultNavigationOptions: defaultNavOptions
+  }
+);
+```
+```
+const ShopNavigator = createDrawerNavigator(
+  {
+    Products: ProductsNavigator,
+    Orders: OrdersNavigator,
+    Admin: AdminNavigator
+  },
+  {
+  ...
+```
+### Custom Components for SIde Drawer
+```
+
+const ShopNavigator = createDrawerNavigator(
+  {
+    Products: ProductsNavigator,
+    Orders: OrdersNavigator,
+    Admin: AdminNavigator
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.primary
+    },
+    contentComponent: props => { #Custom Component
+      const dispatch = useDispatch();
+      return (
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+            <DrawerItems {...props} />
+            <Button
+              title="Logout"
+              color={Colors.primary}
+              onPress={() => {
+                dispatch(authActions.logout());
+                // props.navigation.navigate('Auth');
+              }}
+            />
+          </SafeAreaView>
+        </View>
+      );
+    }
+  }
+);
+```

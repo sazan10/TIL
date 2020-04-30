@@ -78,7 +78,92 @@ useEffect(() => {
 We can also use different codes for different platforms like MainButton.android.js and MainButton.ios.js. While importing them import  normally as import MainButton from './MainButton.js' and react-native will automatically import codes corresponding to platform.
 
 ### Using the SafeArea View
-Wrapping all contents here in App.js with SafeAreaView instead of normal View and applying style to it.
+Wrapping all contents here in App.js with SafeAreaView instead of normal View and applying style to it to prevent displays in notches.
+
+### Using Autologin
+For Auto login we need to check if tokens are stored in asyncstorage in root element i.e App js but we cannot do so, as it is where redux is registered and also the starting navigator of the app also cannot be used. Hence we need to add a new navigator/screen to check if logged in and promptly send to either the app screen or the authentication screen.
+```
+import React, { useEffect } from 'react';
+import {
+  View,
+  ActivityIndicator,
+  StyleSheet,
+  AsyncStorage
+} from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import Colors from '../constants/Colors';
+import * as authActions from '../store/actions/auth';
+
+const StartupScreen = props => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const tryLogin = async () => {
+      const userData = await AsyncStorage.getItem('userData');
+      if (!userData) {
+        props.navigation.navigate('Auth');
+        return;
+      }
+      const transformedData = JSON.parse(userData);
+      const { token, userId, expiryDate } = transformedData;
+      const expirationDate = new Date(expiryDate);
+
+      if (expirationDate <= new Date() || !token || !userId) {
+        props.navigation.navigate('Auth');
+        return;
+      }
+
+      const expirationTime = expirationDate.getTime() - new Date().getTime();
+
+      props.navigation.navigate('Shop');
+      dispatch(authActions.authenticate(userId, token, expirationTime));
+    };
+
+    tryLogin();
+  }, [dispatch]);
+
+  return (
+    <View style={styles.screen}>
+      <ActivityIndicator size="large" color={Colors.primary} />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
+
+export default StartupScreen;
+```
+```
+import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+
+import ShopNavigator from './ShopNavigator';
+
+const NavigationContainer = props => {
+  const navRef = useRef();
+  const isAuth = useSelector(state => !!state.auth.token);
+
+  useEffect(() => {
+    if (!isAuth) {
+      navRef.current.dispatch(
+        NavigationActions.navigate({ routeName: 'Auth' })
+      );
+    }
+  }, [isAuth]);
+
+  return <ShopNavigator ref={navRef} />;
+};
+
+export default NavigationContainer;
+```
 	
-	
+
   
