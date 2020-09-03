@@ -607,8 +607,8 @@ val adapter = SleepNightAdapter()
 </code></pre><p><br></p></li><li><p><strong>In <code>list_item_sleep_night</code>, add attributes to bind the views to the adapters you created in BindingAdapters:</strong> </p><p>For example, for the <code>ImageView</code>, add <code>app:sleepImage="@{sleep}"</code><br><br></p></li><li><strong>Build and run your code.</strong> </li>
 </ol>
 </div>
-```
 
+```
 @BindingAdapter("sleepImage")
 fun ImageView.setSleepImage(item: SleepNight?) {
     item?.let {
@@ -638,6 +638,7 @@ fun TextView.setSleepQualityString(item: SleepNight?) {
     }
 }
 ```
+
 ```
 class SleepNightAdapter : ListAdapter<SleepNight,
         SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
@@ -673,7 +674,6 @@ class SleepNightAdapter : ListAdapter<SleepNight,
 
 /**
  * Callback for calculating the diff between two non-null items in a list.
- *
  * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
  * list that's been passed to `submitList`.
  */
@@ -687,6 +687,7 @@ class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {
     }
 }
 ```
+
 ![](recyclersum.png)
 
 ### GridLayout
