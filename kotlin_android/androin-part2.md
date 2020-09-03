@@ -220,6 +220,7 @@ val qualityImage: ImageView = itemView.findViewById(R.<span class="hljs-property
 }
 </code></pre><p><br></p></li><li><p><strong>Run the app and you should see the styled list!</strong></p></li>
 </ol></div>
+
 ```
 class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
@@ -263,6 +264,7 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
 }
 ```
+
 ### Refactor onBindViewHolder (Encapsulating such that vieHolder attributes are inside viewHolder and not adapter)
 
 <div class="index-module--markdown--2MdcR ureact-markdown "><p>In this exercise, you’ll begin refactoring the ViewHolder in the SleepNightAdapter.  By encapsulating the logic in onBindViewHolder in this exercise, and onCreateViewHolder in the next exercise, you’ll create code that’s easier to maintain and enhance.   </p>
@@ -405,6 +407,7 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 </div>
 
 ### Diff Util
+
 ![](recycleradapter.png)
 ![](notify.png)
 ![](diffutil.png)
@@ -526,6 +529,7 @@ val adapter = SleepNightAdapter()
 ```
 
 ### Adding Data binding to recycler adapter
+
 <div class="index-module--markdown--2MdcR ureact-markdown ">In this exercise you'll take the Adapter you finished in the last exercise and update it to use Data Binding. This is a refactor, and it won't change the behavior of your list.</p>
 <ol><li><p><strong>In <code>list_item_sleep_night.xml</code>, wrap the <code>ConstraintLayout</code> in a <code>layout</code> tag.</strong> </p><p>You can use the intention menu via <code>Alt+Enter</code> to "Convert to data binding layout".<br><br></p></li><li><p><strong>Add a data tag and a variable called <code>sleep</code>, then rebuild the app.</strong></p>
 <pre><code> &lt;<span class="hljs-typedef"><span class="hljs-keyword">data</span>&gt;</span>
@@ -571,6 +575,7 @@ val adapter = SleepNightAdapter()
 </li></ol></div>
 
 ### Creation of Binding Adapter
+
 <div class="index-module--markdown--2MdcR ureact-markdown ">
 <p>In this exercise you'll create binding adapters and move data binding to logic to XML.</p>
 <p>When you've completed this exercise you will have refactored the <code>SleepNightAdapter</code> to use DataBinding, and replaced <code>bind</code>.</p><ol><li><p><strong>In <code>BindingUtils</code>, define three Binding Adapters, one for each view in <code>list_item_sleep_night</code>:</strong> </p><p>For the <code>ImageView</code>, move the code from <code>SleepNightAdapter.ViewHolder bind()</code> function into an extension function:</p><pre><code> @<span class="hljs-type">BindingAdapter</span>(<span class="hljs-string">"sleepImage"</span>)
