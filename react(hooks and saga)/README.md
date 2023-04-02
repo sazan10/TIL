@@ -162,3 +162,70 @@ const Input = props => {
         dispatch({ type: INPUT_BLUR });
     };
 ```
+
+### Server Side Rendering with Next JS
+In conventional react approach browser fetches index file which contains link to script and again fetches the bundle and finally fetches data from backend for rendering into the frontend. So, there are 3 levels of fetching operation, which slows performance.
+![](ssr.png)
+Conventional Approach
+----
+----
+
+![](ssr2.png)
+Server side rendering
+----
+----
+
+![](ssr3.png)
+![](ssr4.png)
+
+Server Side rendering
+
+### Routing in Next js
+Routing in Next js is quite different from react router. It uses directory structure and looks for displays in "pages" folder, where '/' is routed to index.js(jsx)
+
+```
+import Link from'next/Link';
+import Router from 'next/router';
+
+<Link href="/auth"><a>Auth</a></Link>
+<button onClick={()=>Router.push('/auth'} > Go to Auth </button>
+
+```
+
+### Styling in Next JS
+```
+<div>
+	<h1> sodfndf</h1>
+	<style jsx>{`
+		div {
+			border: 1px solid #eee;
+			box-shadow: 0 2p 3px #ccc;
+			padding: 20px;
+			text-align: center;
+			}
+		`}
+	</style>
+	</div>
+```
+
+### getInitialProps (A special lifecycle)
+It is a special lifecycle useful when fetching initial data from server and render. Convert the functional component into a class component and use
+```
+static getInitialProps(context){
+	const promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve ({ appName: "Super App"});
+			}, 1000);
+			});
+			return promise;
+	}
+```
+Or you can use async await
+```
+static async getInitialProps(context){
+	await ...
+```
+For functional component you can use:
+const authIndexPage = (props) =>{}
+authIndexPage.getInitialProps= context = >{}	
+```

@@ -213,4 +213,390 @@ Note: "context" cannot be passed into initState as initstate is called very earl
 
 ### Provider(Same as redux)
 Need to create class and surround the root app with provided. notifylisteners and add listeners.
-			
+
+##### Note:  Card by default takes size as needed for its child but if specified for parent (Container...), it takes parent's size
+
+### Row and Column 
+* MainAxisAlignment: MainAxisAlignment.spaceAroud
+* CrossAxisAlignment: CrossAxisAlignment.stretch
+
+MainAxisAlignment is same as justifyContents in react native flex.
+CrossAxisAlignment is same as alignItems in react native flex.
+
+### Add border, padding to Container
+Container is the global styling component in flutter.
+
+
+```
+children : <Widget> [
+Container(
+	margin: EdgeInsets.symmetric(
+	vertical:20,
+	horizontal: 14,),
+	decoration: BoxDecoration(
+	border: Border.all(
+	color: Colors.blcack,
+	width:2),
+		),
+	]
+```
+
+### Add styling to text
+```
+	child: Text(
+		style: TextStyle(
+		fontWeight: fontWeight.bold,
+		fontSize: 20, 
+		colors: Colors.purple
+			)
+		)
+```
+#### Container vs Column/Row
+
+![alt text](container.png "container vs column/row") 
+
+### Installing Third party libraries
+Go to pub.dev to look for external packages and follow the docs.
+
+* In pubspec.yaml file add the dependency under dependencies with version
+* If the package should not get installed automatically, <b>flutter packages get</b> can be run in the terminal
+
+### Using InputText
+```
+	TextField(
+		decoration: InputDecoration(labelText: "Title'),
+		onChanged: (val) {
+			titleInput = val;
+			}
+		)	
+```
+
+```
+	final textController = TextEditingController();
+	TextField(
+		decoration: InputDecoration(labelText: 'Amount'),
+		controller: amountController
+		)
+	FlatButton(
+		child: Text('Add tx'),
+		textColor: Colors.purple,
+		onPressed: (){
+			print(titleController.text);
+			}
+		)
+```
+
+### Using ListView 
+```
+	Scaffold(
+		body: SingleChildScrollView(
+		child: Column()
+		)
+```
+##### Need to use Scaffold in Scaffold or as child to a parent with dimensions
+##### 
+
+```
+	Container(
+		height: 3000,
+		child: SingleChildScrollView( )
+		)
+```
+
+### ListView(children:[]) Vs ListView.builder()
+ListView.builder only loads what is visible whie listView(children) renders even if they are off screen.
+
+```
+	child: ListView.builder(
+	itemBuilder: (ctx, index){
+	return Widget
+	},
+	itemCount: length of array to display in listView
+```
+##### To access array values in listView use the array with index,eg. transactions[index].value
+
+### Input type number
+```
+	TextField(
+		keyboardType: TextInputType.number
+		)
+```
+
+For iOS use:
+```
+	TextField(
+		keyboardType: TextInputType.numberWithOptions(decimal:true)
+		)
+```
+
+### Modal Sheet 
+```
+	  onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Wrap(
+                        children: [
+                          ListTile(
+                            leading: Icon(Icons.share),
+                            title: Text('Share'),
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.copy),
+                            title: Text('Copy Link'),
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.edit),
+                            title: Text('Edit'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+```
+
+##### Note: The component with modal should be stateful, otherwise it may cause problem of input clearing when we shift to other inputs.
+
+### Accessing the properties of widget from connected classes
+```
+	classs NewTransaction extends StatefulWidget {
+		final Function addTx;
+		NewTransaction(this.addTx);
+		
+		class _NewTransactionState extends State<NewTransaction>
+		_NewTransactionState createState()=> _NewTransactionState();
+		}
+	
+	class _NewTransactionState extends State<NewTransaction> {
+		...
+		widget.addTx( enteredTitle, enteredAmount);
+		
+	}
+
+```
+
+### Using Themes 
+
+```
+	return MaterialApp(
+		title: 'App Name',
+		theme: ThemeData(
+			primarySwatch: Colors.purple,
+			accentColor: Colors.amber,
+			}
+			...
+		)
+```
+
+### Adding Fonts to react native
+To add custom fonts copy the fonts to asset/fonts folder and update the pubspec.yaml file
+
+
+```
+	fonts:
+	  - family: OpenSans
+	    fonts: 
+	      - asset: assets/fonts/OpenSans-Regular.ttf
+	      - asset: assets/fonts/OpenSans-Bold.ttf
+	        style: italic
+	        weight: 700
+```
+then in your code in MaterialApp
+
+
+```
+	return MaterialApp(
+		title: 'App Name',
+		theme: ThemeData(
+			primarySwatch: Colors.purple,
+			accentColor: Colors.amber,
+			fontFamily: 'OpenSans'
+			}
+			...
+		)
+```
+The above code is used for entire project. We can also change fonts only where it's required
+
+```
+	title: Text('title', style: TextStyle(fontFamily:'Open Sans')
+```
+
+But the above process can be tedious when considering all the theme bars in the project, so we can use
+
+```
+	MaterialApp(
+	title:...
+	appBarTheme: AppBarTheme(
+	textTheme: ThemeData.light().textTheme.copyWith(title: TextStyle(fontFamily:'OpenSans', fontSize:20),)
+```
+
+### Adding Images to App
+Create a images folder in assets folder and move the image to this folder.
+```
+	Image.asset('assets/images/wating.png', fit: BoxFit.cover)
+```
+
+In pubspec.yaml file add
+```
+	assets:
+	 - assets/images.waiting.png
+```
+Adding padding can be doine using SizedBox:
+```
+	SizedBox(
+		height:10
+		)
+```
+
+
+### Calculating Sizes Dynamically
+
+```
+	MediaQuery.of(context).size.height*0.6
+	OR MediaQuery.of(context).size.height - appBar.preferredSize.height) * 0.4
+```
+
+### Using layout builder for dynamic sizing
+Assumption: Parent is sized, most probably using above dynamic sizing technique.
+Using layoutBuilder we can dynamically assign dimension to child using constraints provided by parent
+```
+	LayoutBuilder(builder: (ctx, constraints){
+		return Container(
+			height: constraints.maxHeight * 0.6 
+			)
+		}
+
+```
+
+### Checking platform
+```
+	Platform.isIOS
+```
+
+##### Note : Using const in widgets prevents them from rerendering. So, use it for static widgets. Although, do check the widget constructor if it accepts const.
+
+### Problem with list view and stateful widgets
+![alt text](listviews.png "list view") 
+
+### Linear Gradient
+```
+	decoration: BoxDecoration(
+		gradient: LinearGradient(
+			colors: [
+				color.withOpacity(0.7),
+				color,
+				],
+			begin: Alignment.topLeft,
+			end: Alignment.bottomRight,
+			))
+```
+
+### Border radius
+``` 
+	borderRadius: const BorderRadius.circular(15)
+```
+
+### GridView
+```
+	return GridView(
+		children: DUMMY_CATEGORIES.map((catData)=> ).toList(),
+		gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+		maxCrossAxisExtent: 200, // maxWidth
+		childAsectRatio: 3/2, // aspect ratio, height:width
+		crossAxisSpacint: 20, // distance between columns
+		mainAxisSpacint: 20, // distance between rows
+		))
+```
+
+### Working with Theme
+```
+	return MaterialApp(
+		title: 'DeliMeals',
+		theme: ThemeData(
+		primarySwatch: Colors.pink,
+		accentColor: Colors.amber,
+		canvasColor: Color.fromRGBO(255,254,229,1),
+		fontFamily: 'Raleway',
+		textTheme: ThemeData.light().textTheme.copyWith(
+			body1: TextStyle(
+				color:Color.fromRGBO(20, 51, 51, 1),
+				),
+			body2: TextStyle(
+				color: Color.fromRGBO(20, 51, 51, 1),
+				),
+			title: TextStyle(
+				fontSize: 24,
+				fontFamily: 'RobotoCondensed'
+			)					
+			),
+		),
+		home: CategoriesScreen(),
+		}
+		)
+	)
+```
+
+Use it in child as: 
+```	
+	child: Text(
+		title: "Titile",
+		style: Theme.of(context).textTheme.title
+		)
+```
+
+### Handle Touch
+Using GestureDetector or Inkwell as parent.
+```
+	return INkWell(
+	onTap: ,
+	splashColor: Theme.of(context).primaryColor,
+	borderRadius: BorderRadius.circular(15)
+	)
+```
+
+### Navigating to a New Page
+```
+	Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+		return CategoryMealsScreen();
+		})
+```
+
+### Using Named Routes and Passing Data 
+In main.dart, in root:
+```
+	return MaterialApp(
+	...
+	home: CategoriesScreen(),
+	routes: {
+		'/category-meals': (ctx)=> CategoryMealsScreen(),
+		}
+	)
+```
+
+In page where navigation is to be used:
+``` 
+	Navigator.of(ctx).pushNamed(
+		'/category-meals',
+		arguments: {
+			'id': id, 
+			'title': title,
+			}
+		)
+```
+Then in the actual page remove the constructor and accept arguments as:
+```
+	final routeArgs = ModalRoute.of(context).settings.arguments as Map<String, String>;
+	final categoryTitle = routerArgs['id'];
+	final categoryId = routeArgs['title'];
+```
+
+
+#### Note: You can use static const in the page itself to define the route pathe and use it in places where the route is needed.
+For instance in CategoryMealsScreen,
+static const route = '/category-meals';
+
+It can then be used in main and navigation as:
+CategoryMealsScreen.route
+
+
+	
